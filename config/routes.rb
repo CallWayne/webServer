@@ -8,7 +8,10 @@ Rails.application.routes.draw do
     scope '/pubkey' do
       get '/' => 'users#pubkey'
     end
-    scope '/message' do
+    scope '/delete' do
+      get '/' => 'users#delete'
+    end
+    scope '/msg' do
     end
   end
   # The priority is based upon order of creation: first created -> highest priority.

@@ -1,16 +1,34 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :pubkey]
-  skip_before_filter :verify_authenticity_token
 
-  # GET /users
-  # GET /users.json
-  def index
-    @users = User.all
+  def create
+    @user = User.new(user_params)
+    User.find_by(params[:login]) != nil #wenn es den Login schon gibt Return Code 400 "Bad Request"
+    if @user.nil?
+      head 400
+    else
+      @user.save #speicher den User Return Code 200 "OK"
+      head 200
+    end
   end
 
-  # GET /users/1
-  # GET /users/1.json
-  def show
+  def delete
+    @user = User.find_by(login: params[:login])
+    if @user.nil?
+      head 400
+    else
+      @user.destroy #löscht den User Return Code 200 "OK"
+      head 200
+    end
+  end
+
+  def pubkey
+    @user = User.find_by(login: params[:login])
+    if @user.nil?
+      #Return status 400
+      head 400
+    else
+      render json: @user.to_json(only: %w(pubkey_user)) #gibt den pubkey_user als JSON Format zurück
+    end
   end
 
   def anmelden
@@ -21,55 +39,7 @@ class UsersController < ApplicationController
       head 400
     else
       render json: @user.to_json(only: %w(salt_masterkey privkey_user_enc pubkey_user))
+      #gibt den salt_masterkey, privkey_user_enc, pubkey_user als JSON Format zurück
     end
   end
-
-  # POST /users
-  # POST /users.json
-  def create
-    begin
-      @user = User.new(user_params)
-      if User.find_by_name(params[:name]) != nil
-        respond_to do |format|
-          format.json { render json: '{"status":"3"}'}
-        end
-      else
-        respond_to do |format|
-          if @user.save
-            format.json { render json: '{"status":"1"}'}
-          else
-            format.json { render json: '{"status":"2"}'}
-          end
-        end
-      end
-    rescue Exception
-      render json: '{"status":"99"}'
-    end
-  end
-
-  private
-  # Use callbacks to share common setup or constraints between actions.
-  def set_user
-    if User.find_by_name(params[:id]) != nil then
-      @user = User.find_by_name(params[:id])
-    else
-      respond_to do |format|
-        format.json { render json: '{"status":"3"}'}
-      end
-    end
-  end
-
-  # Never trust parameters from the scary internet, only allow the white list through.
-  def user_params
-    params.require(:user).permit(:name, :public_key, :private_key_enc, :salt_master_key)
-  end
-
-  # Get /users/1/pubkey
-  def pubkey
-    respond_to do |format|
-      format.json { render :pubkey, location: @user }
-    end
-  end
-
-
 end
