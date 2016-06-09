@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   #resources :messages
   #resources :users
 
+  get '/' => "welcome#index"
   scope '/:login' do
     get '/' => 'users#anmelden'
     post '/' => 'users#create'
