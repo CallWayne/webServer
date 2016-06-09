@@ -7,3 +7,4 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 User.create(login: "Niklas", salt_masterkey: "test", pubkey_user: "hehehe", privkey_user_enc: "Verschlüsselter privkey")
+Message.create(sender: 'Niklas')

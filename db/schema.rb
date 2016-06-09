@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160606143021) do
+ActiveRecord::Schema.define(version: 20160607112645) do
 
   create_table "messages", force: :cascade do |t|
     t.string   "sender",            limit: 255
@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(version: 20160606143021) do
     t.string   "recipient",         limit: 255
     t.datetime "created_at",                      null: false
     t.datetime "updated_at",                      null: false
+    t.string   "cipher",            limit: 255
   end
 
   create_table "users", force: :cascade do |t|

@@ -12,6 +12,8 @@ Rails.application.routes.draw do
       get '/' => 'users#delete'
     end
     scope '/msg' do
+      get '/' => 'messages#message'
+      post '/' => 'messages#create'
     end
   end
   # The priority is based upon order of creation: first created -> highest priority.
