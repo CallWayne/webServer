@@ -1,8 +1,10 @@
 Rails.application.routes.draw do
+  get 'welcome/index'
+
   #resources :messages
   #resources :users
 
-  get '/' => "welcome#index"
+  root 'welcome#index'
   scope '/:login' do
     get '/' => 'users#anmelden'
     post '/' => 'users#create'
