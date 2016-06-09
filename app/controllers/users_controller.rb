@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
 
   def create
-    @user = User.new(user_params)
+    @user = User.new(params[:user])
     User.find_by(params[:login]) != nil #wenn es den Login schon gibt Return Code 400 "Bad Request"
     if @user.nil?
       head 400
