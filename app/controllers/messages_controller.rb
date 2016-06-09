@@ -35,8 +35,8 @@ class MessagesController < ApplicationController
   def message
     begin
       # Überprüfen ob User existiert
-      user = User.find_by(login: params[:login]) # User zu dem die Nachricht gehört
-      render json: user.messages.last.to_json
+      message = Message.where(recipient: params[:login])# User zu dem die Nachricht gehört
+      render json: message
 
       #sha256 = OpenSSL::Digest::SHA256.new
       # signature berechnen
