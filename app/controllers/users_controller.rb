@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
 
+  #user registrieren
   def create
     @user = User.new(params[:user])
     User.find_by(params[:login]) != nil #wenn es den Login schon gibt Return Code 400 "Bad Request"
@@ -11,6 +12,7 @@ class UsersController < ApplicationController
     end
   end
 
+  #user löschen
   def delete
     @user = User.find_by(login: params[:login])
     if @user.nil?
@@ -21,6 +23,7 @@ class UsersController < ApplicationController
     end
   end
 
+  #pubkey anfordern
   def pubkey
     @user = User.find_by(login: params[:login])
     if @user.nil?
@@ -31,6 +34,7 @@ class UsersController < ApplicationController
     end
   end
 
+  #login
   def anmelden
     @user = User.find_by(login: params[:login])
 
