@@ -8,11 +8,9 @@ Rails.application.routes.draw do
   scope '/:login' do
     get '/' => 'users#anmelden'
     post '/' => 'users#create'
+    delete '/' => 'users#delete'
     scope '/pubkey' do
       get '/' => 'users#pubkey'
-    end
-    scope '/delete' do
-      get '/' => 'users#delete'
     end
     scope '/msg' do
       get '/' => 'messages#message'

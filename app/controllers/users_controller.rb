@@ -1,15 +1,11 @@
 class UsersController < ApplicationController
+  skip_before_action :verify_authenticity_token
+  skip_before_filter :verify_authenticity_token
 
   #user registrieren
   def create
-    @user = User.new(params[:user])
-    User.find_by(params[:login]) != nil #wenn es den Login schon gibt Return Code 400 "Bad Request"
-    if @user.nil?
-      head 400
-    else
-      @user.save #speicher den User Return Code 200 "OK"
-      head 200
-    end
+    @user = User.create(login: params[:username], salt_masterkey: params[:salt_masterkey], pubkey_user: params[:pubkey_user], privkey_user_enc: params[:privkey_user_enc])
+    render plain: "Test"
   end
 
   #user löschen
