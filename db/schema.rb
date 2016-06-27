@@ -11,28 +11,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160607112645) do
+ActiveRecord::Schema.define(version: 20160606143021) do
 
   create_table "messages", force: :cascade do |t|
     t.string   "sender",            limit: 255
     t.text     "content_enc",       limit: 65535
-    t.text     "iv",                limit: 65535
-    t.text     "key_recipient_enc", limit: 65535
-    t.text     "sig_service",       limit: 65535
-    t.text     "sig_recipient",     limit: 65535
+    t.string   "iv",                limit: 255
+    t.string   "key_recipient_enc", limit: 255
+    t.string   "sig_service",       limit: 255
+    t.string   "sig_recipient",     limit: 255
     t.string   "recipient",         limit: 255
     t.datetime "created_at",                      null: false
     t.datetime "updated_at",                      null: false
-    t.string   "cipher",            limit: 255
   end
 
   create_table "users", force: :cascade do |t|
     t.string   "login",            limit: 255
-    t.text     "salt_masterkey",   limit: 65535
-    t.text     "pubkey_user",      limit: 65535
-    t.text     "privkey_user_enc", limit: 65535
-    t.datetime "created_at",                     null: false
-    t.datetime "updated_at",                     null: false
+    t.string   "salt_masterkey",   limit: 255
+    t.string   "pubkey_user",      limit: 255
+    t.string   "privkey_user_enc", limit: 255
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
   end
 
 end

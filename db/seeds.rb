@@ -8,5 +8,5 @@
 
 User.create(login: "Niklas", salt_masterkey: "test", pubkey_user: "-----BEGIN RSA PUBLIC KEY-----\nMIIBCgKCAQEAoxi2V0bSKqAqUtoQHxWkOPnErCS541r6/MOSHmKOd6VSNHoBbnas\n-----END RSA PUBLIC KEY-----\n", privkey_user_enc: "Verschlüsselter privkey")
 User.create(login: "Josua", salt_masterkey: "test", pubkey_user: "hehehe", privkey_user_enc: "Verschlüsselter privkey")
-Message.create(sender: "Niklas", content_enc:"test", iv:"test", key_recipient_enc:"test", sig_service: "test", sig_recipient:"test", recipient: "Josua", cipher: "test")
-Message.create(sender: "Josua", content_enc:"test", iv:"test", key_recipient_enc:"test", sig_service: "test", sig_recipient:"test", recipient: "Niklas", cipher: "test")
+Message.create(sender: "Niklas", content_enc:"test", iv:"test", key_recipient_enc:"test", sig_service: "test", sig_recipient:"test", recipient: "Josua")
+Message.create(sender: "Josua", content_enc:"test", iv:"test", key_recipient_enc:"test", sig_service: "test", sig_recipient:"test", recipient: "Niklas")

@@ -7,11 +7,17 @@ class MessagesController < ApplicationController
       begin
         @user = User.find_by(login: params[:login])
         pubKey = OpenSSL::PKey::RSA.new @user.pubkey_user
-        pubKey.public_decrypt(params[:digital_signature])
+        pubKey.public_decrypt(Base64.decode64(params[:sig_service]))
       rescue
         head 400
       end
-      Message.new(sender: params[:login], content_enc: params[:content_enc], iv: params[:iv], key_recipient_enc: params[:key_recipient_enc], sig_service: params[:sig_service], sig_recipient: params[:sig_recipient], recipient: params[:recipient], cipher: params[:cipher])
+      Message.new(sender: params[:login],
+                  content_enc: params[:content_enc],
+                  iv: params[:iv],
+                  key_recipient_enc: params[:key_recipient_enc],
+                  sig_service: params[:sig_service],
+                  sig_recipient: params[:sig_recipient],
+                  recipient: params[:recipient])
     else
       head 400
     end
