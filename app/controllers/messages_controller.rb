@@ -35,7 +35,7 @@ class MessagesController < ApplicationController
         head 400
       end
         message = Message.where(recipient: params[:login])
-        render json: message.to_json(only: %w(sig_recipient key_recipient_enc cipher login iv))
+        render json: message.to_json(only: %w(sender content_enc iv key_recipient_enc sig_recipient created_at))
     else
       head 400
     end
