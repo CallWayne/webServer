@@ -16,10 +16,10 @@ ActiveRecord::Schema.define(version: 20160607112645) do
   create_table "messages", force: :cascade do |t|
     t.string   "sender",            limit: 255
     t.text     "content_enc",       limit: 65535
-    t.string   "iv",                limit: 255
-    t.string   "key_recipient_enc", limit: 255
-    t.string   "sig_service",       limit: 255
-    t.string   "sig_recipient",     limit: 255
+    t.text     "iv",                limit: 65535
+    t.text     "key_recipient_enc", limit: 65535
+    t.text     "sig_service",       limit: 65535
+    t.text     "sig_recipient",     limit: 65535
     t.string   "recipient",         limit: 255
     t.datetime "created_at",                      null: false
     t.datetime "updated_at",                      null: false
