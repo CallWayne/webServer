@@ -4,7 +4,7 @@ class UsersController < ApplicationController
 
   #user registrieren
   def create
-    @user = User.create(login: params[:username], salt_masterkey: params[:salt_masterkey], pubkey_user: params[:pubkey_user], privkey_user_enc: params[:privkey_user_enc])
+    @user = User.create(login: params[:login], salt_masterkey: params[:salt_masterkey], pubkey_user: params[:pubkey_user], privkey_user_enc: params[:privkey_user_enc])
     render plain: "Test"
   end
 
