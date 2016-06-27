@@ -28,9 +28,9 @@ ActiveRecord::Schema.define(version: 20160607112645) do
 
   create_table "users", force: :cascade do |t|
     t.string   "login",            limit: 255
-    t.string   "salt_masterkey",   limit: 255
+    t.text     "salt_masterkey",   limit: 65535
     t.text     "pubkey_user",      limit: 65535
-    t.string   "privkey_user_enc", limit: 255
+    t.text     "privkey_user_enc", limit: 65535
     t.datetime "created_at",                     null: false
     t.datetime "updated_at",                     null: false
   end
