@@ -28,15 +28,18 @@ class MessagesController < ApplicationController
 
 
   def message
-    #if checktime == true
-      #@user = User.find_by(login: params[:login])
+    if checktime == true
+      @user = User.find_by(login: params[:login])
 
-      #pubKey = OpenSSL::PKey::RSA.new(Base64.decode64(@user.pubkey_user))
-
-      #pubKey.public_decrypt(Base64.decode64(params[:sig_service]))
+      pubKey = OpenSSL::PKey::RSA.new(Base64.decode64(@user.pubkey_user))
+      pubKey.public_decrypt(Base64.decode64(params[:sig_service]))
 
       message = Message.where(recipient: params[:login])
         render json: message.to_json(only: %w(sender content_enc iv key_recipient_enc sig_recipient created_at))
+    else
+      head 400
+    end
+
   end
 
   def checktime
