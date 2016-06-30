@@ -26,7 +26,8 @@ class UsersController < ApplicationController
       #Return status 400
       head 400
     else
-      render json: @user.to_json(only: %w(pubkey_user)) #gibt den pubkey_user als JSON Format zurück
+      #gibt den pubkey_user als JSON Format zurück
+      render json: @user.to_json(only: %w(pubkey_user))
     end
   end
 
